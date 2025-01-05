@@ -2,6 +2,7 @@ $(document).ready(function(){
     // Clock Logic
     var trigger = true;
     var reinit = false;
+    var interval = 5;
     var countTime = setInterval(update_time_keeper, 1000);
     
     function update_time_keeper(){    
@@ -11,17 +12,17 @@ $(document).ready(function(){
         timeArray = timeArray[0].split(":");
         let minutes = timeArray[1];
     
-        if((minutes % 5 == 0) && trigger == true){
+        if((minutes % interval == 0) && trigger == true){
             update_status(minutes);
         }
     
-        if((minutes % 5 != 0) && trigger == false){
+        if((minutes % interval != 0) && trigger == false){
             trigger = true;
         }
     }
     
     function update_status(minutes){
-        while((minutes % 5 == 0) && trigger){
+        while((minutes % interval == 0) && trigger){
             trigger = false;
     
             // Generate random number, passing in minutes
